@@ -2,8 +2,10 @@ from itertools import product
 from utils import leer_archivo_entrada,calcular_conflicto_interno,calcular_esfuerzo
 import math
 
+ruta_archivo = "../../data/entrada.txt"
+red_social, R_max = leer_archivo_entrada(ruta_archivo)
+
 def modciFB(red_social):
-    num_grupos = len(red_social)
     todas_estrategias = product(*[range(n_i + 1) for n_i, _, _, _ in red_social])
     
     mejor_estrategia = None
@@ -12,7 +14,7 @@ def modciFB(red_social):
     
     for estrategia in todas_estrategias:
         esfuerzo = calcular_esfuerzo(red_social, estrategia)
-        if esfuerzo <= 80:  # Se usa un valor fijo en lugar de recibir R_max
+        if esfuerzo <= R_max:  
             conflicto = calcular_conflicto_interno(red_social, estrategia)
             if conflicto < mejor_conflicto:
                 mejor_conflicto = conflicto
@@ -21,9 +23,6 @@ def modciFB(red_social):
     
     return mejor_estrategia, mejor_esfuerzo, mejor_conflicto
 
-# Ejemplo de uso:
-ruta_archivo = "../../data/entrada.txt"
-red_social = leer_archivo_entrada(ruta_archivo)
 
 mejor_estrategia, mejor_esfuerzo, mejor_conflicto = modciFB(red_social)
 print("Conflicto Interno: ", calcular_conflicto_interno(red_social, (1,0,0)))
