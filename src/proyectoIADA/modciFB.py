@@ -21,7 +21,7 @@ def modciFB(red_social):
                 mejor_estrategia = estrategia
                 mejor_esfuerzo = esfuerzo
     
-    return mejor_estrategia, mejor_esfuerzo, mejor_conflicto
+    return (mejor_estrategia, mejor_esfuerzo, mejor_conflicto)
 
 
 # Ejemplo de uso:
@@ -31,8 +31,6 @@ red_social = leer_archivo_entrada(ruta_archivo)
 
 mejor_estrategia, mejor_esfuerzo, mejor_conflicto = modciFB(red_social)
 nueva_red_social = modCI(red_social, mejor_estrategia)
-print("Conflicto Interno: ", calcular_conflicto_interno(red_social, (1,0,0)))
-print("Esfuerzo: ", calcular_esfuerzo(red_social, (1,0,0)))
 print("Mejor estrategia:", mejor_estrategia)
 print("Esfuerzo requerido:", mejor_esfuerzo)
 print("Conflicto interno resultante:", mejor_conflicto)
