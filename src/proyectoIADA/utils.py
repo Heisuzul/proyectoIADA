@@ -42,21 +42,15 @@ def calcular_esfuerzo(red_social, estrategia):
     return esfuerzo
 
 def modCI(red_social, estrategia):
-    """
-    Aplica la estrategia a la red social y devuelve una nueva red social modificada.
-    
-    :param red_social: Tupla (secuencia_agentes, R_max).
-    :param estrategia: Estrategia aplicada a la red social.
-    :return: Nueva red social modificada.
-    """
     secuencia_agentes, R_max = red_social
     nueva_secuencia = []
     
     for i, (n_i, op1, op2, rigidez) in enumerate(secuencia_agentes):
         if estrategia[i] > 0:
-            nueva_secuencia.append((n_i, op1, op1, rigidez))  # Igualar ambas opiniones
+            opinion_final = op1 if abs(op1) > abs(op2) else op2  # Elige la opinión más fuerte
+            nueva_secuencia.append((n_i - estrategia[i], opinion_final, opinion_final, rigidez))
         else:
-            nueva_secuencia.append((n_i, op1, op2, rigidez))  # Mantener opiniones originales
+            nueva_secuencia.append((n_i, op1, op2, rigidez))
     
     return (nueva_secuencia, R_max)
 
