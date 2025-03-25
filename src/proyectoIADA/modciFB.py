@@ -15,7 +15,8 @@ def modciFB(red_social):
     for estrategia in todas_estrategias:
         esfuerzo = calcular_esfuerzo(red_social, estrategia)
         if esfuerzo <= R_max:  # Usa el valor leído desde la tupla red_social
-            conflicto = calcular_conflicto_interno(red_social, estrategia)
+            nueva_red = modCI(red_social, estrategia)  # Aplicamos la estrategia
+            conflicto = calcular_conflicto_interno(nueva_red)  # Evaluamos CI después de la modificación
             if conflicto < mejor_conflicto:
                 mejor_conflicto = conflicto
                 mejor_estrategia = estrategia
@@ -35,5 +36,4 @@ print("Mejor estrategia:", mejor_estrategia)
 print("Esfuerzo requerido:", mejor_esfuerzo)
 print("Conflicto interno resultante:", mejor_conflicto)
 print("Nueva red social:", nueva_red_social)
-
 
