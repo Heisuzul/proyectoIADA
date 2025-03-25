@@ -16,6 +16,7 @@ def cargar_archivo():
             if red_social:
                 text_red_social.config(state="normal")
                 text_red_social.delete("1.0", tk.END)
+                text_red_social.insert(tk.END, "Red social cargada:\n")
                 text_red_social.insert(tk.END, str(red_social))
                 text_red_social.config(state="disabled")
     except Exception as e:
