@@ -1,7 +1,11 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from src.logica.utils import leer_archivo_entrada, modCI
 from src.logica.modciFB import modciFB
+
 
 def cargar_archivo():
     try:
