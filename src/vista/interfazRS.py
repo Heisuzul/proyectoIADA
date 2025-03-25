@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox, ttk
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
@@ -56,31 +56,75 @@ def ejecutar_algoritmo():
 # Configurar ventana principal
 root = tk.Tk()
 root.title("Red Social - Análisis de Conflicto")
+root.geometry("600x500")  # Ajustar el tamaño de la ventana
+root.configure(bg="#f4f4f4")  # Fondo estilo FlatLeaf
+
+# Aplicar estilo FlatLeaf a todos los componentes
+style = ttk.Style()
+style.theme_use("clam")
+
+# Estilo para botones
+style.configure("TButton", 
+                font=("Poppins", 12), 
+                padding=10, 
+                relief="flat", 
+                background="#584caf", 
+                foreground="white", 
+                borderwidth=4, 
+                focuscolor="none")
+style.map("TButton", 
+          background=[("active", "#8478da")])
+
+# Estilo para etiquetas
+style.configure("TLabel", 
+                font=("Montserrat", 12), 
+                background="#f4f4f4", 
+                foreground="#333")
+
+# Estilo para Radiobuttons
+style.configure("TRadiobutton", 
+                font=("Montserrat", 10), 
+                background="#f4f4f4", 
+                foreground="#333",
+                indicatorcolor="#4CAF50")
+style.map("TRadiobutton", 
+          background=[("active", "#ddd")])
+
+# Estilo para el área de texto
+style.configure("TText", 
+                font=("Poppins", 10), 
+                background="white", 
+                foreground="#333", 
+                padding=5)
+
+# Contenedor principal con padding
+frame_principal = tk.Frame(root, padx=20, pady=20, bg="#f4f4f4")
+frame_principal.pack(fill=tk.BOTH, expand=True)
 
 # Botón para cargar archivo
-btn_cargar = tk.Button(root, text="Cargar Archivo", command=cargar_archivo)
-btn_cargar.pack()
+btn_cargar = ttk.Button(frame_principal, text="Cargar Archivo", command=cargar_archivo)
+btn_cargar.pack(pady=5)
 
 # Área de texto para mostrar la red social
-text_red_social = tk.Text(root, height=5, width=50, state="disabled")
-text_red_social.pack()
+text_red_social = tk.Text(frame_principal, height=7, width=60, font=("Montserrat", 10), bg="white", fg="#333")
+text_red_social.pack(pady=10)
 
-# Selección de algoritmo
+# Selección de algoritmo con más separación
 var_algoritmo = tk.StringVar(value="modciFB")
-frame_algoritmo = tk.Frame(root)
-tk.Label(frame_algoritmo, text="Algoritmo:").pack(side=tk.LEFT)
-tk.Radiobutton(frame_algoritmo, text="Fuerza Bruta", variable=var_algoritmo, value="modciFB").pack(side=tk.LEFT)
-tk.Radiobutton(frame_algoritmo, text="Prog. Dinámica", variable=var_algoritmo, value="modciPD").pack(side=tk.LEFT)
-tk.Radiobutton(frame_algoritmo, text="Voraz", variable=var_algoritmo, value="modciV").pack(side=tk.LEFT)
+frame_algoritmo = tk.Frame(frame_principal, pady=10, bg="#f4f4f4")
+ttk.Label(frame_algoritmo, text="Algoritmo:").pack(side=tk.LEFT, padx=5)
+ttk.Radiobutton(frame_algoritmo, text="Fuerza Bruta", variable=var_algoritmo, value="modciFB").pack(side=tk.LEFT, padx=10)
+ttk.Radiobutton(frame_algoritmo, text="Prog. Dinámica", variable=var_algoritmo, value="modciPD").pack(side=tk.LEFT, padx=10)
+ttk.Radiobutton(frame_algoritmo, text="Voraz", variable=var_algoritmo, value="modciV").pack(side=tk.LEFT, padx=10)
 frame_algoritmo.pack()
 
 # Botón para ejecutar el algoritmo
-btn_ejecutar = tk.Button(root, text="Ejecutar", command=ejecutar_algoritmo)
-btn_ejecutar.pack()
+btn_ejecutar = ttk.Button(frame_principal, text="Ejecutar", command=ejecutar_algoritmo)
+btn_ejecutar.pack(pady=10)
 
 # Área de texto para mostrar resultados
-text_resultado = tk.Text(root, height=6, width=50, state="disabled")
-text_resultado.pack()
+text_resultado = tk.Text(frame_principal, height=8, width=60, font=("Montserrat", 10), bg="white", fg="#333")
+text_resultado.pack(pady=10)
 
 # Iniciar la aplicación
 root.mainloop()
