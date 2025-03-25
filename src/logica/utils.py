@@ -1,7 +1,5 @@
 import math
 
-ruta_archivo = "../../data/entrada.txt"
-
 def leer_archivo_entrada(ruta_archivo):
     """
     Lee un archivo de entrada y extrae los datos de la red social y el valor máximo de esfuerzo.

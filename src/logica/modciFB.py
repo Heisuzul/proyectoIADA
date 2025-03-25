@@ -1,7 +1,5 @@
 from itertools import product
-from utils import leer_archivo_entrada,calcular_conflicto_interno,calcular_esfuerzo, modCI
-import math
-
+from src.logica.utils import leer_archivo_entrada,calcular_conflicto_interno,calcular_esfuerzo, modCI
 
 def modciFB(red_social):
     _, R_max = red_social  # Extraemos R_max de la tupla
@@ -23,17 +21,4 @@ def modciFB(red_social):
                 mejor_esfuerzo = esfuerzo
     
     return (mejor_estrategia, mejor_esfuerzo, mejor_conflicto)
-
-
-# Ejemplo de uso:
-ruta_archivo = "../../data/entrada.txt"
-red_social = leer_archivo_entrada(ruta_archivo)
-
-
-mejor_estrategia, mejor_esfuerzo, mejor_conflicto = modciFB(red_social)
-nueva_red_social = modCI(red_social, mejor_estrategia)
-print("Mejor estrategia:", mejor_estrategia)
-print("Esfuerzo requerido:", mejor_esfuerzo)
-print("Conflicto interno resultante:", mejor_conflicto)
-print("Nueva red social:", nueva_red_social)
 
