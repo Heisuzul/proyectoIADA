@@ -1,7 +1,4 @@
-import sys
 import math
-
-ruta_archivo = "../../data/entrada.txt"
 
 def leer_archivo_entrada(ruta_archivo):
     """
@@ -20,18 +17,20 @@ def leer_archivo_entrada(ruta_archivo):
         secuencia_agentes.append((int(datos[0]), int(datos[1]), int(datos[2]), datos[3]))
     
     R_max = int(lineas[n + 1].strip())
+    
+    red_social = (secuencia_agentes, R_max)
+    print("Red social cargada:", red_social)
+
     return (secuencia_agentes, R_max)
 
 
-def calcular_conflicto_interno(red_social, estrategia):
+def calcular_conflicto_interno(red_social):
     numerador = 0
     denominador = 0
     
-    for i, (n_i, op1, op2, rigidez) in enumerate(red_social[0]):
-        n_mod = n_i - estrategia[i]  # Número de agentes restantes
-        if n_mod > 0:
-            numerador += n_mod * (op1 - op2) ** 2
-            denominador += n_mod
+    for n_i, op1, op2, _ in red_social[0]:
+        numerador += n_i * (op1 - op2) ** 2
+        denominador += n_i
     
     return numerador / denominador if denominador > 0 else 0
 
@@ -42,24 +41,13 @@ def calcular_esfuerzo(red_social, estrategia):
     return esfuerzo
 
 def modCI(red_social, estrategia):
-    """
-    Aplica la estrategia a la red social y devuelve una nueva red social modificada.
-    
-    :param red_social: Tupla (secuencia_agentes, R_max).
-    :param estrategia: Estrategia aplicada a la red social.
-    :return: Nueva red social modificada.
-    """
     secuencia_agentes, R_max = red_social
     nueva_secuencia = []
     
     for i, (n_i, op1, op2, rigidez) in enumerate(secuencia_agentes):
-        if estrategia[i] > 0:
-            nueva_secuencia.append((n_i, op1, op1, rigidez))  # Igualar ambas opiniones
-        else:
-            nueva_secuencia.append((n_i, op1, op2, rigidez))  # Mantener opiniones originales
+        if estrategia[i] < n_i:  # Solo agregamos agentes restantes
+            nueva_secuencia.append((n_i - estrategia[i], op1, op2, rigidez))
     
     return (nueva_secuencia, R_max)
 
 
-red_social = leer_archivo_entrada(ruta_archivo)
-print("Red social cargada:", red_social)
