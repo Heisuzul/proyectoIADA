@@ -1,5 +1,5 @@
 from itertools import product
-from src.logica.utils import leer_archivo_entrada,calcular_conflicto_interno,calcular_esfuerzo, modCI
+from src.logica.utils import calcular_conflicto_interno,calcular_esfuerzo, modCI
 
 def modciFB(red_social):
     _, R_max = red_social  # Extraemos R_max de la tupla

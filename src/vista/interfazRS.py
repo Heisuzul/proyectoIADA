@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from src.logica.utils import leer_archivo_entrada, modCI
 from src.logica.modciFB import modciFB
-
+from src.logica.modciV import modciV
 
 def cargar_archivo():
     try:
@@ -35,8 +35,8 @@ def ejecutar_algoritmo():
         resultado = modciFB(red_social)    
     # elif algoritmo == "modciPD":
         # resultado = modciPD(red_social)
-    # elif algoritmo == "modciV":
-        # resultado = modciV(red_social)
+    elif algoritmo == "modciV":
+        resultado = modciV(red_social)
 
     if resultado:
         mejor_estrategia, mejor_esfuerzo, mejor_conflicto = resultado  
