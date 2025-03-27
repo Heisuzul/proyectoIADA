@@ -30,5 +30,5 @@ def modciV(red_social):
     nueva_red_social = modCI(red_social, estrategia)
     nuevo_conflicto = calcular_conflicto_interno(nueva_red_social)
 
-    return estrategia, esfuerzo_usado, nuevo_conflicto
+    return (tuple(estrategia), esfuerzo_usado, nuevo_conflicto)
 
