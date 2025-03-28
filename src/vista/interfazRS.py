@@ -48,8 +48,8 @@ def ejecutar_algoritmo():
         text_resultado.config(state="normal")
         text_resultado.delete("1.0", tk.END)
         text_resultado.insert(tk.END, f"Mejor estrategia: {mejor_estrategia}\n")
-        text_resultado.insert(tk.END, f"Mejor esfuerzo: {mejor_esfuerzo}\n")
-        text_resultado.insert(tk.END, f"Mejor conflicto: {mejor_conflicto}\n")
+        text_resultado.insert(tk.END, f"Esfuerzo requerido: {mejor_esfuerzo}\n")
+        text_resultado.insert(tk.END, f"Conflicto Interno: {mejor_conflicto}\n")
         text_resultado.insert(tk.END, f"Nueva red social: {nueva_red_social}")
         text_resultado.config(state="disabled")
 
