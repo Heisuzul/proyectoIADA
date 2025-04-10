@@ -44,6 +44,9 @@ def ejecutar_algoritmo():
         # Aplicar modCI para obtener la nueva red social
         nueva_red_social = modCI(red_social, mejor_estrategia)  
 
+        # **Actualizar número de grupos después de calcular la nueva red**
+        nueva_red_social = (len(nueva_red_social[1]), nueva_red_social[1], nueva_red_social[2])
+
         # Mostrar resultados
         text_resultado.config(state="normal")
         text_resultado.delete("1.0", tk.END)
