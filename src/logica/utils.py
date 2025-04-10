@@ -26,8 +26,6 @@ def leer_archivo_entrada(ruta_archivo):
     
     return red_social
 
-
-
 def calcular_conflicto_interno(red_social):
     num_grupos,secuencia_agentes, R_max = red_social  
     denominador = num_grupos  # Se mantiene fijo
@@ -38,7 +36,6 @@ def calcular_conflicto_interno(red_social):
     numerador = sum(n_i * (op1 - op2) ** 2 for n_i, op1, op2, _ in secuencia_agentes)
     
     return numerador / denominador
-
 
 def calcular_esfuerzo(red_social, estrategia):
     _, secuencia_agentes, _= red_social  # Se ignora R_max y el num_grupos
