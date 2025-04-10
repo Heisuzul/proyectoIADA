@@ -19,6 +19,7 @@ def cargar_archivo():
                 text_red_social.insert(tk.END, "Red social cargada:\n")
                 text_red_social.insert(tk.END, str(red_social))
                 text_red_social.config(state="disabled")
+                lbl_ruta.config(text=f"Archivo cargado: {ruta.split('/')[-1]}")
     except Exception as e:
         messagebox.showerror("Error", f"Error al cargar el archivo: {e}")
 
@@ -60,7 +61,7 @@ def ejecutar_algoritmo():
 # Configurar ventana principal
 root = tk.Tk()
 root.title("Red Social - Análisis de Conflicto")
-root.geometry("600x500")  # Ajustar el tamaño de la ventana
+root.geometry("600x550")  # Ajustar el tamaño de la ventana
 root.configure(bg="#f4f4f4")  # Fondo estilo FlatLeaf
 
 # Aplicar estilo FlatLeaf a todos los componentes
@@ -108,6 +109,9 @@ frame_principal.pack(fill=tk.BOTH, expand=True)
 # Botón para cargar archivo
 btn_cargar = ttk.Button(frame_principal, text="Cargar Archivo", command=cargar_archivo)
 btn_cargar.pack(pady=5)
+
+lbl_ruta = ttk.Label(frame_principal, text="Esperando archivo...", font=("Montserrat", 10))
+lbl_ruta.pack(pady=5)
 
 # Área de texto para mostrar la red social
 text_red_social = tk.Text(frame_principal, height=7, width=60, font=("Montserrat", 10), bg="white", fg="#333")
