@@ -1,4 +1,4 @@
-from src.logica.utils import calcular_conflicto_interno, calcular_esfuerzo, modCI
+from src.logica.utils import calcular_conflicto_interno, calcular_esfuerzo, aplicar_estrategia
 
 def modciV(red_social):
     SAG, R_max = red_social
@@ -27,7 +27,7 @@ def modciV(red_social):
         estrategia[i] = int(max_cambiables)  # Asegurar que sea un número entero
 
     # 4. Actualizar red social y calcular nuevo conflicto
-    nueva_red_social = modCI(red_social, estrategia)
+    nueva_red_social = aplicar_estrategia(red_social, estrategia)
     nuevo_conflicto = calcular_conflicto_interno(nueva_red_social)
 
     return (tuple(estrategia), esfuerzo_usado, nuevo_conflicto)

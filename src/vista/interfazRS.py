@@ -3,7 +3,7 @@ from tkinter import filedialog, messagebox, ttk
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-from src.logica.utils import leer_archivo_entrada, modCI
+from src.logica.utils import leer_archivo_entrada, aplicar_estrategia
 from src.logica.modciFB import modciFB
 from src.logica.modciV import modciV
 
@@ -42,8 +42,8 @@ def ejecutar_algoritmo():
     if resultado:
         mejor_estrategia, mejor_esfuerzo, mejor_conflicto = resultado  
         
-        # Aplicar modCI para obtener la nueva red social
-        nueva_red_social = modCI(red_social, mejor_estrategia)  
+        # Aplicar estrategia para obtener la nueva red social
+        nueva_red_social = aplicar_estrategia(red_social, mejor_estrategia)  
 
         # **Actualizar número de grupos después de calcular la nueva red**
         nueva_red_social = (len(nueva_red_social[1]), nueva_red_social[1], nueva_red_social[2])

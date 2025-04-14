@@ -1,5 +1,5 @@
 from itertools import product
-from src.logica.utils import calcular_conflicto_interno,calcular_esfuerzo, modCI
+from src.logica.utils import calcular_conflicto_interno,calcular_esfuerzo, aplicar_estrategia
 
 def modciFB(red_social):
     num_grupos, secuencia_agentes, R_max = red_social  # Tomamos el num_grupos original
@@ -16,7 +16,7 @@ def modciFB(red_social):
         esfuerzo = calcular_esfuerzo(red_social, estrategia)
 
         if esfuerzo <= R_max:  # Respetamos la restricción de esfuerzo
-            nueva_red = modCI(red_social, estrategia)  # Aplicamos la estrategia
+            nueva_red = aplicar_estrategia(red_social, estrategia)  # Aplicamos la estrategia
             conflicto = calcular_conflicto_interno(nueva_red)  # Evaluamos CI con el denominador fijo
 
             if conflicto < mejor_conflicto:

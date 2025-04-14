@@ -42,7 +42,7 @@ def calcular_esfuerzo(red_social, estrategia):
     return sum(math.ceil(abs(op1 - op2) * rigidez * estrategia[i]) 
                for i, (n_i, op1, op2, rigidez) in enumerate(secuencia_agentes))
 
-def modCI(red_social, estrategia):
+def aplicar_estrategia(red_social, estrategia):
     num_grupos, secuencia_agentes, R_max = red_social  # Tomamos el num_grupos inicial
 
     nueva_secuencia = [(n_i - estrategia[i], op1, op2, rigidez) 
