@@ -11,6 +11,33 @@ from src.logica.modciPD import modciPD
 # Variable global para guardar la red cargada
 red_social = None
 
+
+def guardar_resultado_txt(estrategia, esfuerzo, conflicto, algoritmo):
+    try:
+        nombres_archivos = {
+            "modciFB": "salida_FB.txt",
+            "modciV": "salida_V.txt",
+            "modciPD": "salida_PD.txt"
+        }
+
+        nombre_archivo = nombres_archivos.get(algoritmo, "salida.txt")
+        ruta_salida = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data", nombre_archivo))
+
+        os.makedirs(os.path.dirname(ruta_salida), exist_ok=True)
+
+        with open(ruta_salida, "w") as archivo:
+            archivo.write(f"{conflicto}\n")
+            archivo.write(f"{esfuerzo}\n")
+            for e in estrategia:
+                archivo.write(f"{e}\n")
+
+        print(f"[INFO] Resultado guardado automáticamente en {ruta_salida}")
+    except Exception as e:
+        print(f"[ERROR] Al guardar el archivo de salida: {e}")
+
+
+
+
 def cargar_archivo():
     try:
         ruta = filedialog.askopenfilename(filetypes=[("Archivos de texto", "*.txt")])
@@ -58,6 +85,10 @@ def ejecutar_algoritmo():
             text_resultado.insert(tk.END, f"Conflicto Interno: {mejor_conflicto}\n")
             text_resultado.insert(tk.END, f"Nueva red social: {nueva_red_social}")
             text_resultado.config(state="disabled")
+            
+            
+            guardar_resultado_txt(mejor_estrategia, mejor_esfuerzo, mejor_conflicto, algoritmo)
+
     except Exception as e:
         print(f"[ERROR] Al ejecutar el algoritmo: {e}")
         messagebox.showerror("Error", f"Error al ejecutar el algoritmo:\n{e}")
