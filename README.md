@@ -12,7 +12,7 @@ Este ejercicio académico permite comparar distintas estrategias de resolución 
 
 ## Instrucciones para ejecutar el código :computer:
 
-> ⚠️ Este proyecto utiliza código fuente en Python para la lógica y una interfaz gráfica en Python con Tkinter para la carga, visualización y ejecución de estrategias.
+> ⚠️ Este proyecto utiliza código fuente en Python para la lógica y una interfaz gráfica con Tkinter para la carga, visualización y ejecución de estrategias.
 
 ### 1. Clonar el repositorio
 
@@ -42,32 +42,34 @@ python interfaz.py
 proyectoIADA/
 │
 ├── data/
-│   ├── BateriaPruebas/
+│   ├── BateriaPruebas/           # Carpeta con 30 archivos de entrada para pruebas
 │   │   ├── Prueba1.txt
 │   │   ├── Prueba2.txt
 │   │   ├── ...
-│   │   └── Prueba3.txt
-│   ├── entrada.txt
-│   ├── entrada2.txt
-│   ├── salida_FB.txt            # Salida de fuerza bruta
-│   ├── salida_PD.txt            # Salida de programacion dinamica
-│   └── salida_V.txt             # Salida del voraz
+│   │   └── Prueba30.txt
+│   ├── entrada.txt               
+│   └── entrada2.txt              
 │
 ├── src/
-│   ├── data/                    
-│   ├── logica/
-│   │   ├── modciFB.py           # Algoritmo Fuerza Bruta
-│   │   ├── modciPD.py           # Programación Dinámica
-│   │   ├── modciV.py            # Algoritmo Voraz
-│   │   └── utils.py             # Funciones auxiliares
+│   ├── data/                     
+│   ├── logica/                   
+│   │   ├── modciFB.py            # Algoritmo de Fuerza Bruta
+│   │   ├── modciPD.py            # Algoritmo de Programación Dinámica
+│   │   ├── modciV.py             # Algoritmo Voraz
+│   │   └── utils.py              # Funciones auxiliares: lectura, esfuerzo, CI, etc.
 │   └── vista/
-│       └── interfazRS.py        # Interfaz gráfica en Tkinter
+│       └── interfazRS.py         # Interfaz gráfica en Tkinter para ejecución y visualización
 │
 ├── tests/
-│   └── __init__.py              # Inicialización para pruebas automáticas
+│   ├── outputs/                  # Salidas generadas por cada algoritmo a partir de cada prueba
+│   │   ├── salida_FB_Prueba1.txt
+│   │   ├── salida_PD_Prueba30.txt
+│   │   └── ...
+│   └── __init__.py              # Inicializador para pruebas automáticas
 │
-├── Enunciado.pdf                # Documento original del proyecto
-├── README.md                    # Instrucciones y documentación del proyecto
+├── Enunciado.pdf                 # Documento oficial del proyecto
+├── README.md                     # Instrucciones de instalación, uso y créditos del proyecto
+
 
 ```
 
@@ -120,7 +122,7 @@ python modciPD.py
 
 
 
-- [Mina Garcia, Heidy](https://github.com/Heisuzul) - 20
+- [Mina Garcia, Heidy](https://github.com/Heisuzul) - 201931720
 - [Mosquera Zapata, Wilson Andrés](https://github.com/andresengineer) - 202182116
 - [Ortiz Alvarez, Hassen David](https://github.com/hassen2208) - 20
 - [Rodriguez Marulanda, Alejandro](https://github.com/Alejand2r) - 20
