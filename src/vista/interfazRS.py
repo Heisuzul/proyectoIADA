@@ -2,11 +2,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 import sys
 import os
-
-# Asegura acceso a la carpeta src/
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-
-# Importar funciones lógicas
 from src.logica.utils import leer_archivo_entrada, aplicar_estrategia
 from src.logica.modciFB import modciFB
 from src.logica.modciV import modciV
@@ -50,10 +46,11 @@ def ejecutar_algoritmo():
         
         if resultado:
             mejor_estrategia, mejor_esfuerzo, mejor_conflicto = resultado
-
+            # Aplicar estrategia para obtener la nueva red social
             nueva_red_social = aplicar_estrategia(red_social, mejor_estrategia)
+            #**Actualizar número de grupos después de calcular la nueva red**
             nueva_red_social = (len(nueva_red_social[1]), nueva_red_social[1], nueva_red_social[2])
-
+            # Mostrar resultados
             text_resultado.config(state="normal")
             text_resultado.delete("1.0", tk.END)
             text_resultado.insert(tk.END, f"Mejor estrategia: {mejor_estrategia}\n")
@@ -66,39 +63,41 @@ def ejecutar_algoritmo():
         messagebox.showerror("Error", f"Error al ejecutar el algoritmo:\n{e}")
 
 
-# ============ CONFIGURACIÓN DE LA INTERFAZ ============
+# Configurar ventana principal
 
 root = tk.Tk()
 root.title("Red Social - Análisis de Conflicto Interno")
 root.geometry("600x550")
 root.configure(bg="#f4f4f4")
-
+# Aplicar estilo FlatLeaf a todos los componentes
 style = ttk.Style()
 style.theme_use("clam")
 
-# Estilos visuales
+# Estilo para botones
 style.configure("TButton", font=("Poppins", 12), padding=10,
                 relief="flat", background="#584caf", foreground="white")
 style.map("TButton", background=[("active", "#8478da")])
-
+# Estilo para etiquetas
 style.configure("TLabel", font=("Montserrat", 12), background="#f4f4f4", foreground="#333")
+# Estilo para Radiobuttons
 style.configure("TRadiobutton", font=("Montserrat", 10), background="#f4f4f4", foreground="#333")
+# Estilo para el área de texto
 style.configure("TText", font=("Poppins", 10), background="white", foreground="#333", padding=5)
 
-# ============ COMPONENTES ============
+# Contenedor principal con padding
 
 frame_principal = tk.Frame(root, padx=20, pady=20, bg="#f4f4f4")
 frame_principal.pack(fill=tk.BOTH, expand=True)
-
+# Boton para cargar archivo
 btn_cargar = ttk.Button(frame_principal, text="Cargar Archivo", command=cargar_archivo)
 btn_cargar.pack(pady=5)
 
 lbl_ruta = ttk.Label(frame_principal, text="Esperando archivo...", font=("Montserrat", 10))
 lbl_ruta.pack(pady=5)
-
+# Área de texto para mostrar la red social
 text_red_social = tk.Text(frame_principal, height=7, width=60, font=("Montserrat", 10), bg="white", fg="#333")
 text_red_social.pack(pady=10)
-
+# Selección de Algoritmo con más separación
 var_algoritmo = tk.StringVar(value="modciFB")
 frame_algoritmo = tk.Frame(frame_principal, pady=10, bg="#f4f4f4")
 ttk.Label(frame_algoritmo, text="Algoritmo:").pack(side=tk.LEFT, padx=5)
@@ -106,10 +105,10 @@ ttk.Radiobutton(frame_algoritmo, text="Fuerza Bruta", variable=var_algoritmo, va
 ttk.Radiobutton(frame_algoritmo, text="Prog. Dinámica", variable=var_algoritmo, value="modciPD").pack(side=tk.LEFT, padx=10)
 ttk.Radiobutton(frame_algoritmo, text="Voraz", variable=var_algoritmo, value="modciV").pack(side=tk.LEFT, padx=10)
 frame_algoritmo.pack()
-
+# Boton para ejecutar el algoritmo
 btn_ejecutar = ttk.Button(frame_principal, text="Ejecutar", command=ejecutar_algoritmo)
 btn_ejecutar.pack(pady=10)
-
+# Area de texto para mostrar resultados
 text_resultado = tk.Text(frame_principal, height=8, width=60, font=("Montserrat", 10), bg="white", fg="#333")
 text_resultado.pack(pady=10)
 
