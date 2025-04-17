@@ -10,18 +10,21 @@ from src.logica.modciPD import modciPD
 
 # Variable global para guardar la red cargada
 red_social = None
+ruta_entrada_actual = None
 
 
-def guardar_resultado_txt(estrategia, esfuerzo, conflicto, algoritmo):
+def guardar_resultado_txt(estrategia, esfuerzo, conflicto, algoritmo, archivo_entrada):
     try:
         nombres_archivos = {
-            "modciFB": "salida_FB.txt",
-            "modciV": "salida_V.txt",
-            "modciPD": "salida_PD.txt"
+            "modciFB": "salidaFB",
+            "modciV": "salidaV",
+            "modciPD": "salidaPD"
         }
 
-        nombre_archivo = nombres_archivos.get(algoritmo, "salida.txt")
-        ruta_salida = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data", nombre_archivo))
+        base_nombre = nombres_archivos.get(algoritmo, "salida")
+        entrada_base = os.path.splitext(os.path.basename(archivo_entrada))[0]  # sin .txt
+        nombre_archivo = f"{base_nombre}_{entrada_base}.txt"
+        ruta_salida = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../tests/outputs/", nombre_archivo))
 
         os.makedirs(os.path.dirname(ruta_salida), exist_ok=True)
 
@@ -42,6 +45,8 @@ def cargar_archivo():
     try:
         ruta = filedialog.askopenfilename(filetypes=[("Archivos de texto", "*.txt")])
         if ruta:
+            global ruta_entrada_actual
+            ruta_entrada_actual = ruta  
             global red_social
             red_social = leer_archivo_entrada(ruta)
             if red_social:
@@ -86,8 +91,7 @@ def ejecutar_algoritmo():
             text_resultado.insert(tk.END, f"Nueva red social: {nueva_red_social}")
             text_resultado.config(state="disabled")
             
-            
-            guardar_resultado_txt(mejor_estrategia, mejor_esfuerzo, mejor_conflicto, algoritmo)
+            guardar_resultado_txt(mejor_estrategia, mejor_esfuerzo, mejor_conflicto, algoritmo, ruta_entrada_actual)
 
     except Exception as e:
         print(f"[ERROR] Al ejecutar el algoritmo: {e}")
