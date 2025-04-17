@@ -122,7 +122,7 @@ python modciPD.py
 
 
 
-- [Mina Garcia, Heidy](https://github.com/Heisuzul) - 20
+- [Mina Garcia, Heidy](https://github.com/Heisuzul) - 201931720
 - [Mosquera Zapata, Wilson Andrés](https://github.com/andresengineer) - 202182116
 - [Ortiz Alvarez, Hassen David](https://github.com/hassen2208) - 20
 - [Rodriguez Marulanda, Alejandro](https://github.com/Alejand2r) - 20
