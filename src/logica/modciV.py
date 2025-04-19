@@ -1,4 +1,4 @@
-from utils import calcular_conflicto_interno, calcular_esfuerzo, aplicar_estrategia
+from src.logica.utils import calcular_conflicto_interno, aplicar_estrategia
 
 def modciV(red_social):
     num_grupos, SAG, R_max = red_social
