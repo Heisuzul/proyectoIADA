@@ -2,7 +2,7 @@ from itertools import product
 from src.logica.utils import calcular_conflicto_interno,calcular_esfuerzo, aplicar_estrategia
 
 def modciFB(red_social):
-    num_grupos, secuencia_agentes, R_max = red_social  # Tomamos el num_grupos original
+    _, secuencia_agentes, R_max = red_social  
 
     mejor_estrategia = None
     mejor_conflicto = float('inf')
