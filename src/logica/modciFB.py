@@ -4,8 +4,6 @@ from src.logica.utils import calcular_conflicto_interno,calcular_esfuerzo, aplic
 def modciFB(red_social):
     num_grupos, secuencia_agentes, R_max = red_social  # Tomamos el num_grupos original
 
-    print(f"Cantidad inicial de grupos: {num_grupos}")  # Debug para verificar que se mantiene
-
     mejor_estrategia = None
     mejor_conflicto = float('inf')
     mejor_esfuerzo = 0
@@ -23,8 +21,6 @@ def modciFB(red_social):
                 mejor_conflicto = conflicto
                 mejor_estrategia = estrategia
                 mejor_esfuerzo = esfuerzo
-
-    print(f"\nMejor estrategia final: {mejor_estrategia}, Esfuerzo: {mejor_esfuerzo}, CI: {mejor_conflicto}")
     
     return (mejor_estrategia, mejor_esfuerzo, mejor_conflicto)
 
